@@ -1,21 +1,22 @@
 let todoItems = [];
 
-function addTodom(text) {
-	const todoListItem
-	todoListItem.
-}
+function newTodoItem(input) {
+	const todoListItem = {
+		input,
+		checked: false,
+		id: Date.now()
+	};
 
-function newItem(input) {
-
-}
+	todoItems.push(todoListItem);
+	console.log(todoItems);
+};
 
 const form = document.querySelector('.todo-form');
 
 form.addEventListener('submit', event => {
 	event.preventDefault();
 
-	const input = document.querySelector('.todo-input');
+	var input = document.querySelector('.todo-input').value;
 
-	const text = input.value.trim();
-	console.log(text);
+	newTodoItem(input);
 })

@@ -2,3 +2,12 @@ body {
 	border: 2px solid red;
 }
 
+header {
+	border: 2px solid rgb(84, 45, 255);
+
+}
+
+main {
+	border: 2px solid rgb(30, 255, 0);
+
+}
