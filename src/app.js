@@ -1,22 +1,43 @@
 let todoItems = [];
 
-function newTodoItem(input) {
-	const todoListItem = {
+
+function newTask(input) {
+	const task = {
 		input,
 		checked: false,
-		id: Date.now()
+		id: Date.now(),
 	};
 
-	todoItems.push(todoListItem);
+	todoItems.push(task);
+	renderTask(task);
 	console.log(todoItems);
-};
+}
 
-const form = document.querySelector('.todo-form');
+function renderTask(task) {
+	const	list = document.querySelector('.todo-list');
+	let		isChecked = task.checked ? 'done' : '';
+	var		node = document.createElement('li');
 
-form.addEventListener('submit', event => {
-	event.preventDefault();
+	node.setAttribute('class', 'todo-item ${isChecked}');
+	node.setAttribute('data-key', task.id);
 
-	var input = document.querySelector('.todo-input').value;
+	// <input id="${task.id}" type="checkbox"/>
+	node.innerHTML = `
+	<label for="${task.id}" class="tick js-tick"></label>
+	<button class="delete-todo js-delete-todo">
+	<svg><use href="#delete-icon"></use></svg>
+	</button>
+	`;
 
-	newTodoItem(input);
-})
+	list.append(node);
+}
+
+const form = document.querySelector(".todo-form");
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  var input = document.querySelector(".todo-input").value;
+
+  newTask(input);
+});

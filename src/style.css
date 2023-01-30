@@ -11,3 +11,7 @@ main {
 	border: 2px solid rgb(30, 255, 0);
 
 }
+
+.todo-list {
+	list-style-type: none;
+}
