@@ -35,8 +35,8 @@ function renderTask(task) {
 	node.setAttribute('data-key', task.id);
 
 	node.innerHTML = `
-		<input id="${task.id}" type="checkbox"/>
-		<label for="${task.id}" class="task-tag"></label>
+		<input id="${task.id}" type="checkbox" class="task-tag"/>
+		<label for="${task.id}"></label>
 		<span>${task.input}</span>
 		<button class="delete-todo">x
 		</button>
@@ -56,12 +56,14 @@ form.addEventListener("submit", (event) => {
 
 const list = document.querySelector('.todo-list');
 list.addEventListener('click', event => {
-	if (!event.target.classList.contains('task-tag')) {
+	if (event.target.classList.contains('task-tag')) {
 		const itemKey = event.target.parentElement.dataset.key;
 		toggleDone(itemKey);
 	}
-	else if (!event.target.classList.contains('delete-todo')) {
-		const itemKey = event.target.parentElement.dataset.key;
-		toggleDone(itemKey);
+	else if (event.target.classList.contains('delete-todo')) {
+		const	itemKey = event.target.parentElement.dataset.key;
+		const 	index = todoItems.findIndex(item => item.id === Number(itemKey));
+		const	item = document.querySelector(`[data-key='${todoItems[index].id}']`);
+		item.remove();
 	}
 });
